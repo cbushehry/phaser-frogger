@@ -4,8 +4,8 @@ let gameScene = new Phaser.Scene('Game');
 // load assets
 gameScene.preload = function(){
   // load images
-  this.load.image('background', 'https://jsbin-user-assets.s3.amazonaws.com/fariazz/original-background.png');
-  this.load.image('player', 'https://jsbin-user-assets.s3.amazonaws.com/fariazz/player.png');
+  this.load.image('background', './assets/background.png');
+  this.load.image('player', './assets/player.png');
 };
  
 
