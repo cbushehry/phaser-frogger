@@ -18,17 +18,28 @@ gameScene.create = function() {
   bg.setOrigin(0, 0);
 
   // create player
-  let player = this.add.sprite(70, 180, 'player');
-  player.setScale(1, 1);
+  this.player = this.add.sprite(70, 180, 'player');
+  this.player.setScale(1, 1);
 
   // create enemy1
-  let enemy1 = this.add.sprite(250, 180, 'enemy');
-  enemy1.flipX = true;
+  this.enemy1 = this.add.sprite(250, 180, 'enemy');
+  this.enemy1.flipX = true;
 
   //create enemy2
-  let enemy2 = this.add.sprite(450, 180, 'enemy');
-  enemy2.flipX = true;
+  this.enemy2 = this.add.sprite(450, 180, 'enemy');
+  this.enemy2.flipX = true;
 };
+
+gameScene.update = function() {
+  this.enemy1.setRotation += 0.01;
+
+  if(this.player.scaleX < 2){
+    this.player.scaleX += 0.001;
+    this.player.scaleY += 0.001;
+  } else {
+    this.player.angle += 0.1;
+  }
+}
 
 // set the configuration of the game
 let config = {
