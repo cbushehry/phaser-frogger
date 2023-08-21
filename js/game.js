@@ -35,6 +35,18 @@ gameScene.update = function() {
   if(this.input.activePointer.isDown) {
     this.player.x += this.playerSpeed;
   }
+
+  // treasure overlap check
+  let playerRect = this.player.getBounds();
+  let treasureRect = this.goal.getBounds();
+  
+  if(Phaser.Geom.Intersects.RectangleToRectangle(playerRect, treasureRect)) {
+    console.log('reached goal!');
+    
+    // restart the Scene
+    this.scene.restart();
+    return;
+  }
 }
 
 // set the configuration of the game
