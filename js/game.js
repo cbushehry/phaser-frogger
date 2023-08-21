@@ -1,5 +1,9 @@
-// create a new scene
 let gameScene = new Phaser.Scene('Game');
+
+//initiate game scene parameters
+gameScene.init = function() {
+  this.playerSpeed = 1;
+};
 
 // load assets
 gameScene.preload = function(){
@@ -20,24 +24,12 @@ gameScene.create = function() {
   // create player
   this.player = this.add.sprite(70, 180, 'player');
   this.player.setScale(1, 1);
-
-  // create enemy1
-  this.enemy1 = this.add.sprite(250, 180, 'enemy');
-  this.enemy1.flipX = true;
-
-  //create enemy2
-  this.enemy2 = this.add.sprite(450, 180, 'enemy');
-  this.enemy2.flipX = true;
 };
 
 gameScene.update = function() {
-  this.enemy1.setRotation += 0.01;
-
-  if(this.player.scaleX < 2){
-    this.player.scaleX += 0.001;
-    this.player.scaleY += 0.001;
-  } else {
-    this.player.angle += 0.1;
+  //checkfor active input
+  if(this.input.activePointer.isDown) {
+    this.player.x += this.playerSpeed;
   }
 }
 
