@@ -3,10 +3,10 @@ let gameScene = new Phaser.Scene('Game');
 // initiate scene parameters
 gameScene.init = function() {
   // player speed
-  this.playerSpeed = 2;
+  this.playerSpeed = 1.1;
   // enemy speed
   this.enemyMinSpeed = 1;
-  this.enemyMaxSpeed = 1.1;
+  this.enemyMaxSpeed = 1.3;
   // boundaries
   this.enemyMinY = 80;
   this.enemyMaxY = 280;
@@ -66,7 +66,8 @@ gameScene.update = function(){
   let playerRect = this.player.getBounds();
   let treasureRect = this.goal.getBounds();
   if(Phaser.Geom.Intersects.RectangleToRectangle(playerRect, treasureRect)) {
-    console.log('reached goal!');
+    console.log('reached treasure!');
+    window.alert('reached treasure!')
     // restart the Scene
     this.scene.restart();
     return;
