@@ -10,6 +10,8 @@ gameScene.init = function() {
   // boundaries
   this.enemyMinY = 80;
   this.enemyMaxY = 280;
+  // we are not terminating
+  this.isTerminating = false;
 };
 // load assets
 gameScene.preload = function(){
@@ -57,6 +59,8 @@ gameScene.create = function() {
 };
 // this is called up to 60 times per second
 gameScene.update = function(){
+  // don't execute if we are terminating
+  if(this.isTerminating) return;
   // check for active input (left click / touch)
   if(this.input.activePointer.isDown) {
     // player walks
@@ -66,11 +70,9 @@ gameScene.update = function(){
   let playerRect = this.player.getBounds();
   let treasureRect = this.goal.getBounds();
   if(Phaser.Geom.Intersects.RectangleToRectangle(playerRect, treasureRect)) {
-    console.log('reached treasure!');
-    window.alert('reached treasure!')
-    // restart the Scene
-    this.scene.restart();
-    return;
+    console.log('reached goal!');
+    // end game
+    return this.gameOver();
   }
   // get enemies
   let enemies = this.enemies.getChildren();
@@ -89,11 +91,25 @@ gameScene.update = function(){
     let enemyRect = enemies[i].getBounds();
     if(Phaser.Geom.Intersects.RectangleToRectangle(playerRect, enemyRect)) {
       console.log('Game over!');
-      // restart the Scene
-      this.scene.restart();
-      return;
+      // end game
+      return this.gameOver();
     }
   }
+};
+gameScene.gameOver = function() {
+  // initiated game over sequence
+  this.isTerminating = true;
+  // shake camera
+  this.cameras.main.shake(500);
+  // listen for event completion
+  this.cameras.main.on('camerashakecomplete', function(camera, effect){
+    // fade out
+    this.cameras.main.fade(500);
+  }, this);
+  this.cameras.main.on('camerafadeoutcomplete', function(camera, effect){
+    // restart the Scene
+    this.scene.restart();
+  }, this);
 };
 // set the configuration of the game
 let config = {
