@@ -13,10 +13,10 @@ DEPLOYMENT:
 * Phaser
 
 ## 3. Features
-* 
+* User moves forward 
 
 <br></br>
- ![phaser-frogger image](./images/phaser-frogger.png)
+ ![phaser-frogger image](./assets/images/phaser-frogger.jpg)
 
 ## 4. Credits / Contact Info
 This application was made by Cameron Bushehry

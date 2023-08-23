@@ -16,10 +16,10 @@ gameScene.init = function() {
 // load assets
 gameScene.preload = function(){
   // load images
-  this.load.image('background', 'assets/background.png');
-  this.load.image('player', 'assets/player.png');
-  this.load.image('enemy', 'assets/dragon.png');
-  this.load.image('goal', 'assets/treasure.png');
+  this.load.image('background', 'assets/images/background.png');
+  this.load.image('player', 'assets/images/player.png');
+  this.load.image('enemy', 'assets/images/dragon.png');
+  this.load.image('goal', 'assets/images/treasure.png');
 };
 // called once after the preload ends
 gameScene.create = function() {
